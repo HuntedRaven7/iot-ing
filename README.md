@@ -1,4 +1,4 @@
-# finpilot
+# iot-ing
 
 A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux.
 
@@ -131,7 +131,7 @@ Click "Use this template" to create a new repository from this template.
 
 ### 2. Rename the Project
 
-Important: Change `finpilot` to your repository name in these 7 files:
+Important: Change `iot-ing` to your repository name in these 7 files:
 
 1. `Containerfile` (`# Name:` comment and `ARG IMAGE_NAME`): `# Name: your-repo-name`
 2. `Justfile` (`export IMAGE_NAME := env("IMAGE_NAME", ...)`): `your-repo-name`
@@ -158,7 +158,7 @@ Renovate automatically updates dependencies and GitHub Actions (including workfl
 
 1. Go to GitHub → Settings → Developer settings → **Personal access tokens** → **Tokens (classic)**
 2. Click **Generate new token (classic)**
-3. Set a note like `renovate-finpilot`
+3. Set a note like `renovate-iot-ing`
 4. Select scopes: **`repo`** (full control) and **`workflow`** (update workflows)
 5. Click **Generate token** and copy the value
 6. Go to your repository → Settings → Secrets and variables → Actions
@@ -199,10 +199,10 @@ improvements with every future finpilot user.
 Choose your base image in `Containerfile` (the `FROM` line):
 
 ```dockerfile
-FROM quay.io/fedora-ostree-desktops/silverblue:44@sha256:...
+FROM quay.io/fedora/fedora-iot:44@sha256:...
 ```
 
-Finpilot layers on top of Fedora Silverblue, not Bluefin. Bluefin's desktop
+iot-ing layers on top of Fedora IoT, not Bluefin. Bluefin's desktop
 configuration is provided by `@projectbluefin/common` earlier in the build.
 
 Add your packages in `build/10-build.sh`:
@@ -359,9 +359,10 @@ This template follows the **multi-stage build architecture** from @projectbluefi
 - **@projectbluefin/common** - Desktop configuration shared with Aurora (includes branding/artwork content)
 - **@ublue-os/brew** - Homebrew integration
 
-**Stage 2: Base Image** - Default options:
+**Stage 2: Base Image** - Default option:
 
-- `quay.io/fedora-ostree-desktops/silverblue:44` (Fedora-based GNOME desktop, default)
+- `quay.io/fedora/fedora-iot:44` (Fedora-based IoT edition, no desktop)
+- `quay.io/fedora-ostree-desktops/silverblue:44` (Fedora-based GNOME desktop, alternative)
 - `quay.io/centos-bootc/centos-bootc:stream10` (CentOS-based alternative)
 
 ### Benefits of This Architecture

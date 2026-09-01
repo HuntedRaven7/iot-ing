@@ -1,7 +1,7 @@
 ###############################################################################
 # PROJECT NAME CONFIGURATION
 ###############################################################################
-# Name: finpilot
+# Name: iot-ing
 #
 # IMPORTANT: Change "finpilot" above to your desired project name.
 # This name should be used consistently throughout the repository in:
@@ -27,6 +27,7 @@
 #    - @ublue-os/brew - Homebrew integration
 #
 # 2. Base Image Options (edit the FROM line below):
+#    - `quay.io/fedora/fedora-iot:44` (Fedora 44 IoT edition, no desktop)
 #    - `quay.io/fedora-ostree-desktops/silverblue:44` (Fedora 44 and GNOME)
 #    - `quay.io/fedora-ostree-desktops/base-main:44` (Fedora 44, no desktop)
 #    - `quay.io/centos-bootc/centos-bootc:stream10` (CentOS-based)
@@ -49,16 +50,16 @@ COPY custom /custom
 COPY --from=common /system_files /oci/common
 COPY --from=brew /system_files /oci/brew
 
-# Base Image - GNOME included (Fedora official OSTree desktop)
+# Base Image - Fedora IoT (Fedora official OSTree IoT edition)
 # Renovate will keep the digest pin up to date.
-FROM quay.io/fedora-ostree-desktops/silverblue:44@sha256:3318ebff7eada58e23c3aa8dc84349638b109a866fcd6cb5e9e150687179e701
+FROM quay.io/fedora/fedora-iot:44@sha256:11efd334777b9dc29129340fcf4c52c86431855a7f49e9941c289915974f2637
 
 # Image identity - these define how bootc, fastfetch, and the ublue ecosystem
 # recognize your image. Change these to match your project name.
-ARG IMAGE_NAME="finpilot"
-ARG IMAGE_VENDOR="projectbluefin"
+ARG IMAGE_NAME="iot-ing"
+ARG IMAGE_VENDOR="HuntedRaven7"
 ARG UBLUE_IMAGE_TAG="stable"
-ARG BASE_IMAGE_NAME="silverblue"
+ARG BASE_IMAGE_NAME="fedora-iot"
 ARG FEDORA_MAJOR_VERSION="44"
 ARG VERSION=""
 
