@@ -18,6 +18,9 @@ shopt -s nullglob
 
 echo "::group:: Overlay Brew Integration Files"
 
+# Fedora IoT base image does not include rsync; install it before use
+dnf5 install -y rsync
+
 # Brew integration files from @ublue-os/brew OCI (tarball, systemd services, shell integration)
 rsync -rvK /ctx/oci/brew/ /
 
