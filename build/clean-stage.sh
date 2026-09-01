@@ -13,11 +13,6 @@ CLEAN_ROOT="${CLEAN_ROOT:-/}"
 dnf5 config-manager setopt keepcache=0
 dnf5 versionlock clear
 
-# This comes last because we can't *ever* afford to ship fedora flatpaks on the image
-systemctl disable flatpak-add-fedora-repos.service
-systemctl mask flatpak-add-fedora-repos.service
-rm -f "${CLEAN_ROOT}/usr/lib/systemd/system/flatpak-add-fedora-repos.service"
-
 rm -rf "${CLEAN_ROOT}/.gitkeep"
 # Use -mindepth/-maxdepth instead of shell globs so these are no-ops when the
 # directories are empty (e.g. /var/cache/{libdnf5,rpm-ostree} only exist as
