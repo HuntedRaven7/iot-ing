@@ -52,7 +52,7 @@ COPY --from=brew /system_files /oci/brew
 
 # Base Image - Fedora IoT (Fedora official OSTree IoT edition)
 # Renovate will keep the digest pin up to date.
-FROM quay.io/fedora/fedora-iot:44@sha256:90b97b34903eec0fa00b39ccb85290379c74b1df9bbece539e602fca487bbc4a
+FROM quay.io/fedora/fedora-iot:44@sha256:0f347ed2cd229610e9759b8f39db508f4ed1127f6f42fe0002e527b0aa6255ed
 
 # Image identity - these define how bootc, fastfetch, and the ublue ecosystem
 # recognize your image. Change these to match your project name.
